@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Checkbox from '@mui/material/Checkbox';
 import './App.css';
 
 function createData(name, unit, reserved, gradReq) {
@@ -25,7 +26,8 @@ function ClassList() {
       <Table sx={{ minWidth: 300}} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Class Name </TableCell>
+            <TableCell align="center">select </TableCell>
+            <TableCell align="center">Class Name </TableCell>
             <TableCell align="center">unit</TableCell>
             <TableCell align="center">reserved</TableCell>
             <TableCell align="center">gradReq</TableCell>
@@ -36,10 +38,8 @@ function ClassList() {
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
+            > <Checkbox defaultChecked />
+              <TableCell align="center" component="th" scope="row"> {row.name}</TableCell>
               <TableCell align="center">{row.unit}</TableCell>
               <TableCell align="center">{row.reserved}</TableCell>
               <TableCell align="center">{row.gradReq}</TableCell>
