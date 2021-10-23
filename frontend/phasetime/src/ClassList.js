@@ -17,6 +17,8 @@ import './App.css';
 
 
 function ClassList(props) {
+  var empty = true
+
   const ratings = [
     {
       value: 1,
@@ -47,6 +49,7 @@ function ClassList(props) {
       }
     })
     if (!exist) {
+      // empty = false;
       return {name: name, unit: unit, priority:priority, delete:toDelete};
     } else {
       return [];
@@ -76,9 +79,10 @@ function ClassList(props) {
             //   {props.newRawRow[0]}
             // </Box>,s
             props.newRawRow[0],
-            <Box sx={{ width: 50, m: 2}}>
-              {props.newRawRow[1]}
-            </Box>,    
+            // <Box sx={{ width: 50, m: 2}}>
+            //   {props.newRawRow[1]}
+            // </Box>,   
+            props.newRawRow[1], 
             <Box sx={{ width: 200, m: 2}}>
               <Slider
                 aria-label="Priority"
@@ -97,11 +101,11 @@ function ClassList(props) {
         )
       );
       console.log("rows:\n", rows);
-    }, [props.newRawRow, flipstate]);
+    }, [props.newRawRow]);
 
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} >
       <Table sx={{ minWidth: 300}} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -127,7 +131,8 @@ function ClassList(props) {
         </TableBody>
       </Table>
     </TableContainer>
-  );
+  )
+  
 }
 
 export default ClassList;

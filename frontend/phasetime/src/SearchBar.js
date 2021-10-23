@@ -4,7 +4,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
+import SearchIcon from '@mui/icons-material/Search';
 import * as d3 from 'd3';
 import data from './data.csv';
 
@@ -38,7 +38,7 @@ export default function SearchBar(props) {
         <Box
             component="form"
             sx={{
-            m: 2,
+            m: 2
             }}
             onSubmit={(event) => handleSubmit(event)}
         >
@@ -51,9 +51,10 @@ export default function SearchBar(props) {
             <Grid item>
                 <Autocomplete
                 disablePortal
+                // freeSolo
                 id="combo-box-demo"
                 options={courseNames}
-                sx={{ width: 350 }}
+                sx={{ width: 500 }}
                 onChange={(event, value) =>
                     {
                       courseSelected = (value)

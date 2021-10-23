@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
+import { CenterFocusStrong } from '@material-ui/icons';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -18,26 +19,89 @@ const Item = styled(Paper)(({ theme }) => ({
 function App() {
 
   const [classListRows, setClassListRows] = React.useState(["", ""])
+  // const [showBox, setShowBow] = React.useState(<ClassList newRawRow={classListRows}/>);
 
-  return (
-    <div className="App">
-      <h1>phase time</h1>
+  // const RenderTable = () => {
+    if (classListRows[0] !== "") {
+      return (
+        <div className="App">
+          <h1>Phase Time</h1>
+          <SearchBar onClick={setClassListRows}/>
+      `    <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={2}>
+              <Grid item md={6}>
+                <Item> <ClassList newRawRow={classListRows}/> </Item>
+              </Grid>
+              <Grid item md={6}>
+                <Item><MyClass /></Item>
+              </Grid>
+            </Grid>
+          </Box>`
+        </div>
+    );
+    } else {
+      return (
+        <div className="App-header">
+          <h1>Phase Time</h1>
+          <SearchBar onClick={setClassListRows}/>
+          {/* <ClassList newRawRow={classListRows}/> */}
+        </div>
+      )
+    }
+  //   return (
+  //     <div className="App">
+  //       <h1>Phase Time</h1>
+  //       <SearchBar onClick={setClassListRows}/>
+  //   `    <Box sx={{ flexGrow: 1 }}>
+  //         <Grid container spacing={2}>
+  //           <Grid item md={6}>
+  //             <Item> <ClassList newRawRow={classListRows}/> </Item>
+  //           </Grid>
+  //           <Grid item md={6}>
+  //             <Item><MyClass /></Item>
+  //           </Grid>
+  //         </Grid>
+  //       </Box>`
+  //     </div>
+  // );
+  // }
 
-      <SearchBar onClick={setClassListRows}/>
+  // const RenderOnlySearch = () => {
+  //   return (
+  //     <div className="App-header">
+  //       <h1>Phase Time</h1>
+  //       <SearchBar onClick={setClassListRows}/>
+  //       {/* <ClassList newRawRow={classListRows}/> */}
+  //     </div>
+  //   )
+  // }
+
+  // return <RenderTable />;
+  // return <RenderOnlySearch />;
+  // if (classListRows[0] === '') {
+  //   return <RenderOnlySearch />
+  // } else {
+  //   return <RenderTable />
+  // }
+  // return (
+  //   <div className="App">
+  //     <h1>phase time</h1>
+
+  //     <SearchBar onClick={setClassListRows}/>
       
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          <Grid item md={6}>
-            <Item> <ClassList newRawRow={classListRows}/></Item>
-          </Grid>
-          <Grid item md={6}>
-            <Item><MyClass /></Item>
-          </Grid>
+  //     <Box sx={{ flexGrow: 1 }}>
+  //       <Grid container spacing={2}>
+  //         <Grid item md={6}>
+  //           <Item> <ClassList newRawRow={classListRows}/></Item>
+  //         </Grid>
+  //         <Grid item md={6}>
+  //           <Item><MyClass /></Item>
+  //         </Grid>
 
-        </Grid>
-      </Box>
-    </div>
-  );
+  //       </Grid>
+  //   </Box>
+  //   </div>
+  // );
 }
 
 export default App;
