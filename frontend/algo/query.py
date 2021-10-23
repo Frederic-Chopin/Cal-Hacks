@@ -8,7 +8,7 @@ def load_data():
     reader = csv.reader(input_file)
     priority_dict = {}
     for row in reader:
-        course_name = row[0]
+        course_name = row[0].upper()
         unit = int(row[4])
         priority = float(row[10])
         priority_dict[course_name] = (priority, unit)
