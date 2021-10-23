@@ -10,7 +10,7 @@ def load_data():
     for row in reader:
         course_name = row[0]
         unit = int(row[4])
-        priority = float(row[5])
+        priority = float(row[10])
         priority_dict[course_name] = (priority, unit)
     return priority_dict
 
@@ -47,35 +47,48 @@ def powerset(iterable):
     return chain.from_iterable(combinations(s, r) for r in range(len(s) + 1))
 
 
-def take_query(course_names):
-    # input: course_names is a list of course names that the user wants to query
+def take_query(query_courses):
+    # input: query_courses is a list of (course_name, user_priority) tuples that the user wants to query
     # output: dict (keys = course_names, values = 'Phase 1'/'Phase 2'/'Adjustment Period')
     courses = []
     phase_dict = {}
     data_dict = load_data()
-    for course_name in course_names:
+
+    # finds the average user_priority and (later) subtracts it from user_priorities to calibrate
+    total_user_priority = 0
+    for _, user_priority in query_courses:
+        total_user_priority += user_priority
+    average_user_priority = total_user_priority / len(query_courses)
+
+    user_input_weight = 0.1  # hyperparameter
+
+    for course_name, user_priority in query_courses:
         priority, unit = data_dict[course_name]
-        courses.append((course_name, priority, unit))
+        courses.append((course_name, priority + (user_priority - average_user_priority) * user_input_weight, unit))
     p1_courses, p1_leftover = knapsack(courses, 13.5)
+
     for course in p1_courses:
         courses.remove(course)
         course_name = course[0]
         phase_dict[course_name] = 'Phase 1'
     p2_courses, _ = knapsack(courses, 4 + p1_leftover)
+
     for course in p2_courses:
         courses.remove(course)
         course_name = course[0]
         phase_dict[course_name] = 'Phase 2'
+
     for course in courses:
         course_name = course[0]
         phase_dict[course_name] = 'Adjustment Period'
+
     return phase_dict
 
 
 def main():
     courses = []
-    for course_name in sys.argv[1:]:
-        courses.append(course_name)
+    for course_name, user_priority in zip(sys.argv[1:][0::2], sys.argv[1:][1::2]):
+        courses.append((course_name, int(user_priority)))
     print(take_query(courses))
 
 
