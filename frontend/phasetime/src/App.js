@@ -1,4 +1,5 @@
 import './App.css';
+import * as React from 'react';
 import MyClass from './MyClass.js';
 import SearchBar from './SearchBar.js'
 import ClassList from './ClassList.js'
@@ -15,14 +16,19 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function App() {
+
+  const [classListRows, setClassListRows] = React.useState(["", ""])
+
   return (
     <div className="App">
       <h1>phase time</h1>
-      <SearchBar />
+
+      <SearchBar onClick={setClassListRows}/>
+      
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item md={6}>
-            <Item> <ClassList /></Item>
+            <Item> <ClassList newRawRow={classListRows}/></Item>
           </Grid>
           <Grid item md={6}>
             <Item><MyClass /></Item>

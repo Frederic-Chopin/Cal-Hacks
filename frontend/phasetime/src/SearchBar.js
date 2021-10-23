@@ -11,23 +11,36 @@ import data from './data.csv';
 function getData() {
     var courseNames = [];
     d3.csv(data, function(data) {
-        console.log(data.courseName.toUpperCase());
+        // console.log(data.courseName.toUpperCase());
         courseNames.push({ label: data.courseName.toUpperCase() });
     });
-    console.log("courseNames:\n", courseNames);
+    // console.log("courseNames:\n", courseNames);
     return courseNames;
 }
 
 const courseNames = getData()
 
-export default function SearchBar() {
+
+
+let courseSelected = "";
+
+export default function SearchBar(props) {
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("adding course");
+        console.log("tags: ", courseSelected.label);
+        props.onClick([courseSelected.label, "4"]);
+    };
 
     return (
         <div>
         <Box
+            component="form"
             sx={{
             m: 2,
             }}
+            onSubmit={(event) => handleSubmit(event)}
         >
             <Grid
             container
@@ -41,6 +54,11 @@ export default function SearchBar() {
                 id="combo-box-demo"
                 options={courseNames}
                 sx={{ width: 350 }}
+                onChange={(event, value) =>
+                    {
+                      courseSelected = (value)
+                    }
+                }
                 renderInput={(params) => (
                     <TextField {...params} label="Course Name" />
                     )}

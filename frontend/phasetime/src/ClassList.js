@@ -10,18 +10,42 @@ import Checkbox from '@mui/material/Checkbox';
 import Switch from '@mui/material/Switch';
 import './App.css';
 
-function createData(name, unit, reserved, gradReq) {
-  return {name: name, unit: unit, reserved:reserved, gradReq: gradReq};
-}
 
-const rows = [
-  createData('cs61a', '4', <Switch  defaultChecked />, <Switch  defaultChecked />),
-  createData('cs61b', '4', <Switch  defaultChecked />, <Switch  defaultChecked />),
-  createData('cs61c', '4', <Switch  defaultChecked />, <Switch  defaultChecked />),
-  createData('cs70', '4', <Switch  defaultChecked />, <Switch  defaultChecked />),
-];
 
-function ClassList() {
+function ClassList(props) {
+
+  const [rows, setRows] = React.useState([]);
+  
+  function createData(name, unit, reserved, gradReq) {
+    if (name === "") {
+      return [];
+    }
+  
+    var exist = false;
+    rows.forEach(row => {
+      if (row.name === name) {
+        exist = true;
+      }
+    })
+    if (!exist) {
+      return {name: name, unit: unit, reserved:reserved, gradReq: gradReq};
+    } else {
+      return [];
+    }
+  }
+
+  React.useEffect(
+    () => {
+      console.log('reset rows');
+      setRows(
+        rows.concat(
+          createData(props.newRawRow[0], props.newRawRow[1], <Switch  defaultChecked />, <Switch  defaultChecked />)
+        )
+      );
+      console.log("rows:\n", rows);
+    }, props.newRawRow);
+
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 300}} aria-label="simple table">
@@ -39,7 +63,10 @@ function ClassList() {
             <TableRow
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            > <Checkbox defaultChecked />
+            > 
+              <TableCell align="center">
+                <Checkbox defaultChecked />
+              </TableCell>
               <TableCell align="center" component="th" scope="row"> {row.name}</TableCell>
               <TableCell align="center">{row.unit}</TableCell>
               <TableCell align="center">{row.reserved}</TableCell>
