@@ -22,6 +22,7 @@ const rows = [
 ];
 
 function ClassList() {
+  // const [select, setSelect] = useState(false);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 300}} aria-label="simple table">
@@ -38,8 +39,9 @@ function ClassList() {
           {rows.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            > <Checkbox defaultChecked />
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}> 
+              <Checkbox defaultChecked />
+              {/* <Checkbox checked={this.state.isTrue} onClick={() => this.setState({isTrue: !this.state.isTrue})}/> */}
               <TableCell align="center" component="th" scope="row"> {row.name}</TableCell>
               <TableCell align="center">{row.unit}</TableCell>
               <TableCell align="center">{row.reserved}</TableCell>
