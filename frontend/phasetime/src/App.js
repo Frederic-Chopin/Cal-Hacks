@@ -35,7 +35,7 @@ function App() {
           </Grid>
 
         </Grid>
-    </Box>
+      </Box>
     </div>
   );
 }
