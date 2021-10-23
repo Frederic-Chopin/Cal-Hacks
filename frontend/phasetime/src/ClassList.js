@@ -101,7 +101,7 @@ function ClassList(props) {
         )
       );
       console.log("rows:\n", rows);
-    }, [props.newRawRow]);
+    }, props.newRawRow);
 
   var checkedCourses = [];
 

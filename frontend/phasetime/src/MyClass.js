@@ -29,7 +29,7 @@ function MyClass(props) {
         newRows.concat([{ name: courseName, phase: props.phases[courseName] }]);
       }
       setRows(newRows);
-    }, props.phases
+    }, [props.phases]
   );
 
   return (
