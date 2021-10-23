@@ -117,9 +117,7 @@ function ClassList(props) {
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             > 
-              <TableCell align="center">
-                <Checkbox defaultChecked />
-              </TableCell>
+              <TableCell align="center"><Checkbox /></TableCell>
               <TableCell align="center" component="th" scope="row"> {row.name}</TableCell>
               <TableCell align="center">{row.unit}</TableCell>
               <TableCell align="center">{row.priority}</TableCell>
