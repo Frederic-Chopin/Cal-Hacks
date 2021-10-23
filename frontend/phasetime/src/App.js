@@ -45,7 +45,13 @@ function App() {
       ]})
     })
       .then(response => response.json())
-      .then(json => console.log('json:', json));
+      .then(json => {
+        
+        console.log('json:', json.phases)
+        for (const courseName in json.phases) {
+          console.log(`${courseName}: phase = ${json.phases[courseName]}`)
+        }
+      });
   };
 
   return (
@@ -64,7 +70,7 @@ function App() {
             <Item> <ClassList newRawRow={classListRows}/></Item>
           </Grid>
           <Grid item md={6}>
-            <Item><MyClass rows={coursePhase}/></Item>
+            <Item><MyClass phases={coursePhase}/></Item>
           </Grid>
 
         </Grid>

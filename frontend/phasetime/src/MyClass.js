@@ -21,7 +21,16 @@ function createData(name, phase) {
 
 function MyClass(props) {
 
-  var rows = props.rows;
+  const [rows, setRows] = React.useState([]);
+  React.useEffect(
+    () => {
+      let newRows = [];
+      for (const courseName in props.phases) {
+        newRows.concat([{ name: courseName, phase: props.phases[courseName] }]);
+      }
+      setRows(newRows);
+    }, props.phases
+  );
 
   return (
     <TableContainer component={Paper}>
