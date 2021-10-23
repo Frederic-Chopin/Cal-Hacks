@@ -15,7 +15,6 @@ bin-release/
 
 frontend/phasetime/node_modules
 .DS_Store
-frontend/algo/__pychache__
 frontend/algo/venv
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
