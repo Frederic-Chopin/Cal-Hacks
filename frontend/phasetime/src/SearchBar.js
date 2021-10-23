@@ -10,12 +10,11 @@ export default function SearchBar() {
    <div>
      <Box
        sx={{
-         width: 800,
-         height: 100,
+        m: 2, 
          // bgcolor: 'primary.dark',
        }}
      >
-       <Grid container columnSpacing={2} >
+       <Grid container columnSpacing={2} alignItems="center" justifyContent="center">
          <Grid item>
            <Autocomplete
              disablePortal
