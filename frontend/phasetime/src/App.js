@@ -9,7 +9,7 @@ import { styled } from '@mui/material/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
-  padding: theme.spacing(1),
+  padding: theme.spacing(2),
   textAlign: 'center',
   color: theme.palette.text.secondary,
 }));
@@ -17,14 +17,14 @@ const Item = styled(Paper)(({ theme }) => ({
 function App() {
   return (
     <div className="App">
-      phase time
+      <h1>phase time</h1>
       <SearchBar />
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          <Grid item m={12}>
+          <Grid item md={6}>
             <Item> <ClassList /></Item>
           </Grid>
-          <Grid item m={12}>
+          <Grid item md={6}>
             <Item><MyClass /></Item>
           </Grid>
 

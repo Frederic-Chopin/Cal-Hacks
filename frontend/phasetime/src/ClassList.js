@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
+import Switch from '@mui/material/Switch';
 import './App.css';
 
 function createData(name, unit, reserved, gradReq) {
@@ -14,10 +15,10 @@ function createData(name, unit, reserved, gradReq) {
 }
 
 const rows = [
-  createData('cs61a', '4', 'yes', 'yes'),
-  createData('cs61b', '4', 'yes', 'yes'),
-  createData('cs61c', '4', 'yes', 'yes'),
-  createData('cs70', '4', 'yes', 'yes'),
+  createData('cs61a', '4', <Switch  defaultChecked />, <Switch  defaultChecked />),
+  createData('cs61b', '4', <Switch  defaultChecked />, <Switch  defaultChecked />),
+  createData('cs61c', '4', <Switch  defaultChecked />, <Switch  defaultChecked />),
+  createData('cs70', '4', <Switch  defaultChecked />, <Switch  defaultChecked />),
 ];
 
 function ClassList() {
