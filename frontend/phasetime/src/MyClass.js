@@ -25,7 +25,7 @@ function MyClass() {
       <Table sx={{ minWidth: 300}} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Class Name </TableCell>
+            <TableCell align="center">Class Name </TableCell>
             <TableCell align="center">Phase Time</TableCell>
           </TableRow>
         </TableHead>
@@ -35,7 +35,7 @@ function MyClass() {
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell  align="center" component="th" scope="row">
                 {row.name}
               </TableCell>
               <TableCell align="center">{row.phase}</TableCell>
