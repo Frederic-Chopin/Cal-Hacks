@@ -1,0 +1,10 @@
+header {
+    /* position: fixed; */
+    font-size: 20px;
+    font-family: Roboto,arial,sans-serif;
+    color: #202124;
+    margin-top: 100px;
+    width:100%;
+    top: 0;
+    margin: 0;
+}

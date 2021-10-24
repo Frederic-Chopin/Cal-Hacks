@@ -59,7 +59,7 @@ function MyClass(props) {
       }
       console.log("myClass rows:\n", rows);
 
-    }, [props.courses]
+    }, [props.courses, setQuery, setRows]
   );
 
   return (

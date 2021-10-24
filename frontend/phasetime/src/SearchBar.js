@@ -1,4 +1,5 @@
 import * as React from "react";
+import './SearchBar.css'
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Grid from "@mui/material/Grid";
@@ -36,7 +37,7 @@ export default function SearchBar(props) {
     };
 
     return (
-        <div>
+        <div className = 'SearchBar'>
         <Box
             component="form"
             sx={{

@@ -98,7 +98,7 @@ function ClassList(props) {
       // props.setCheckedCourses(checkedCourses);
       // console.log("checkedCourses when first added:", checkedCourses)
       // console.log("rows:\n", rows);
-    }, props.newRawRow);
+    }, [props.newRawRow, flipstate, setCheckedCourses]);
 
   const handleCheck = (event) => {
     console.log("handleCheck:", event.target.checked, event.target.name);
