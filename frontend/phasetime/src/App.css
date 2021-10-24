@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  margin: 10px;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-family: Roboto,arial,sans-serif;
+  /* background-image: url('test1.png'); */
 }
 
 .App-logo {

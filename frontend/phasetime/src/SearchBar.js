@@ -12,13 +12,14 @@ function getData() {
     var courseNames = [];
     d3.csv(data, function(data) {
         // console.log(data.courseName.toUpperCase());
-        courseNames.push({ label: data.courseName.toUpperCase() });
+        // console.log("data unit:", data);
+        courseNames.push({ label: data.courseName.toUpperCase(), unit: data.unit });
     });
     // console.log("courseNames:\n", courseNames);
-    return courseNames;
+    return courseNames.sort((a, b) => (a.label > b.label) ? 1 : -1);
 }
 
-const courseNames = getData()
+const courseNames = getData();
 
 
 
@@ -30,7 +31,8 @@ export default function SearchBar(props) {
         event.preventDefault();
         console.log("adding course");
         console.log("tags: ", courseSelected.label);
-        props.onClick([courseSelected.label, "4"]);
+        console.log("units:", courseSelected.unit);
+        props.onClick([courseSelected.label, courseSelected.unit]);
     };
 
     return (
