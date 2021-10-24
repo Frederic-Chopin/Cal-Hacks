@@ -1,0 +1,10 @@
+.main-footer {
+    font-size: 14px;
+    font-family: Roboto,arial,sans-serif;
+    color: #202124;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60px;   /* Height of the footer */
+    background:#f2f2f2;
+  }

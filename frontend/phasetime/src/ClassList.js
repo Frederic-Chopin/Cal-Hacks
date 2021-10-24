@@ -101,7 +101,24 @@ function ClassList(props) {
         )
       );
       console.log("rows:\n", rows);
-    }, [props.newRawRow]);
+    }, props.newRawRow);
+
+  var checkedCourses = [];
+
+  const handleCheck = (event) => {
+    console.log(event.target.checked, event.target.name);
+    if (event.target.checked) {
+      if (!checkedCourses.includes(event.target.name)) {
+        checkedCourses.push(event.target.name);
+      }
+    } else {
+      if (checkedCourses.includes(event.target.name)) {
+        checkedCourses = checkedCourses.filter(function(item) {
+          return item !== event.target.name;
+      })
+      }
+    }
+  }
 
 
   return (
@@ -121,7 +138,9 @@ function ClassList(props) {
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             > 
-              <TableCell align="center"><Checkbox /></TableCell>
+              <TableCell align="center">
+                <Checkbox name={row.name} onChange={handleCheck}/>
+              </TableCell>
               <TableCell align="center" component="th" scope="row"> {row.name}</TableCell>
               <TableCell align="center">{row.unit}</TableCell>
               <TableCell align="center">{row.priority}</TableCell>
