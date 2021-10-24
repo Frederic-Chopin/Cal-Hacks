@@ -7,9 +7,9 @@ import { Grid } from "@mui/material";
 
 function Footer() {
   return (
-    <div className="main-footer">
+    <footer>
       <div className="1stLine">
-        <h4 align="center">Cal Phase Time 
+        <h4 align="center">Cal Phase Time   
         <Link href="https://github.com/Frederic-Chopin/Cal-Hacks"> <GitHubIcon /> </Link>
         {/* <a> <Button onclick = {() => {<Link href="https://github.com/Frederic-Chopin/Cal-Hacks"> <GitHubIcon /> </Link>}}> 
             <GitHubIcon />
@@ -20,7 +20,7 @@ function Footer() {
             &copy;{new Date().getFullYear()} CalHacks 8.0 | All rights reserved
         </p>
       </div>
-    </div>
+    </footer>
   );
 }
 
