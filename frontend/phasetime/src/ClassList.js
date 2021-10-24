@@ -1,4 +1,5 @@
 import * as React from 'react';
+// import { useState } from 'react-usestateref';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -92,35 +93,29 @@ function ClassList(props) {
           )
         )
       );
-      setCheckedCourses(checkedCourses.concat([props.newRawRow[0]]));
+      // setCheckedCourses(checkedCourses.concat([props.newRawRow[0]]));
       // checkedCourses.push(props.newRawRow[0])
-      props.setCheckedCourses(checkedCourses);
+      // props.setCheckedCourses(checkedCourses);
       // console.log("checkedCourses when first added:", checkedCourses)
       // console.log("rows:\n", rows);
     }, props.newRawRow);
 
-  
-
   const handleCheck = (event) => {
-    console.log(event.target.checked, event.target.name);
+    console.log("handleCheck:", event.target.checked, event.target.name);
     if (event.target.checked) {
       if (!checkedCourses.includes(event.target.name)) {
         setCheckedCourses(checkedCourses.concat([event.target.name]));
-        // checkedCourses.push(event.target.name);
       }
     } else {
       if (checkedCourses.includes(event.target.name)) {
         setCheckedCourses(checkedCourses.filter(function(item) {
           return item !== event.target.name;
         }))
-      //   checkedCourses = checkedCourses.filter(function(item) {
-      //     return item !== event.target.name;
-      // })
       }
     }
-    // console.log("checkedCourses handleCheck:", checkedCourses);
     props.setCheckedCourses(checkedCourses);
   }
+
 
 
   return (

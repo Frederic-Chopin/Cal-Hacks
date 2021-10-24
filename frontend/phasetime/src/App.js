@@ -21,48 +21,11 @@ function App() {
   const [classListRows, setClassListRows] = React.useState(["", ""]);
   const [coursePhase, setCoursePhase] = React.useState([]);
   const [checkedCourses, setCheckedCourses] = React.useState([]);
-  
-  // React.useEffect(() => {
-  //   fetch("/phase").then(
-  //     res => res.json()
-  //   ).then(
-  //     data => {
-  //       setCoursePhase(data);
-  //       console.log(data);
-  //     }
-  //   )
-  // }, classListRows);
-
-  const handlePost = e => {
-    e.preventDefault();
-    fetch('http://localhost:5000/phase/post', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({"courses": [
-        {"courseName": "COMPSCI 188", "priority": 8},
-        {"courseName": "EE 120", "priority": 3},
-      ]})
-    })
-      .then(response => response.json())
-      .then(json => {
-        
-        console.log('json:', json.phases)
-        for (const courseName in json.phases) {
-          console.log(`${courseName}: phase = ${json.phases[courseName]}`)
-        }
-      });
-  };
 
     if (classListRows[0] !== "") {
       return (
         <div className="App">
           <h1>Phase Time</h1>
-          <form>
-        <button onClick={handlePost}>Post</button>
-      </form>
           <SearchBar onClick={setClassListRows}/>
       `    <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
@@ -80,7 +43,7 @@ function App() {
       return (
         <div className="App-header">
           <h1>Phase Time</h1>
-          <SearchBar onClick={setClassListRows}/>
+          <SearchBar onClick={setClassListRows} />
           {/* <ClassList newRawRow={classListRows}/> */}
         </div>
       );
