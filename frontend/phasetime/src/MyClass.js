@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import './App.css';
+import { precisionPrefix } from 'd3-format';
 
 function createData(name, phase) {
   return {name: name, phase: phase};
@@ -22,14 +23,41 @@ function createData(name, phase) {
 function MyClass(props) {
 
   const [rows, setRows] = React.useState([]);
+  const [query, setQuery] = React.useState({"courses": []});
+
   React.useEffect(
     () => {
-      let newRows = [];
-      for (const courseName in props.phases) {
-        newRows.concat([{ name: courseName, phase: props.phases[courseName] }]);
+      var newQuery = {"courses": [] };
+      for (const courseName of props.courses) {
+        newQuery.courses.push({ "courseName": courseName, "priority": 5 });
       }
-      setRows(newRows);
-    }, [props.phases]
+      setQuery(newQuery);
+      console.log("query:", query);
+
+      if (query.courses.length > 0) {
+        fetch('http://localhost:5000/phase/post', {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(query)
+        })
+          .then(response => response.json())
+          .then(json => {
+            console.log("json phases:", json.phases);
+            let newRows = [];
+            for (const course in json.phases) {
+              console.log("json phases course:", course, json.phases[course]);
+              newRows = newRows.concat([{ name: course, phase: json.phases[course] }]);
+            }
+            console.log("newRows:", newRows);
+            setRows(newRows);
+          });
+      }
+      console.log("myClass rows:\n", rows);
+
+    }, [props.courses]
   );
 
   return (

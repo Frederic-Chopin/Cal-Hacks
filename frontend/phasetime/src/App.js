@@ -19,8 +19,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function App() {
 
-  const [classListRows, setClassListRows] = React.useState(["", ""])
-  const [coursePhase, setCoursePhase] = React.useState([])
+  const [classListRows, setClassListRows] = React.useState(["", ""]);
+  const [coursePhase, setCoursePhase] = React.useState([]);
+  const [checkedCourses, setCheckedCourses] = React.useState([]);
   
   // React.useEffect(() => {
   //   fetch("/phase").then(
@@ -67,10 +68,10 @@ function App() {
       `    <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               <Grid item md={6}>
-                <Item> <ClassList newRawRow={classListRows}/> </Item>
+                <Item> <ClassList newRawRow={classListRows} setCheckedCourses={setCheckedCourses}/> </Item>
               </Grid>
               <Grid item md={6}>
-                <Item><MyClass /></Item>
+                <Item><MyClass courses={checkedCourses} /></Item>
               </Grid>
             </Grid>
             <Footer />

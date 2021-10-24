@@ -17,7 +17,6 @@ import './App.css';
 
 
 function ClassList(props) {
-  var empty = true
 
   const ratings = [
     {
@@ -36,6 +35,7 @@ function ClassList(props) {
 
   const [rows, setRows] = React.useState([]);
   const [state, flipstate] = React.useState(false);
+  const [checkedCourses, setCheckedCourses] = React.useState([]);
 
   function createData(name, unit, priority, toDelete, exist) {
     if (name === "") {
@@ -49,7 +49,6 @@ function ClassList(props) {
       }
     })
     if (!exist) {
-      // empty = false;
       return {name: name, unit: unit, priority:priority, delete:toDelete};
     } else {
       return [];
@@ -73,15 +72,8 @@ function ClassList(props) {
       console.log('reset rows');
       setRows(
         rows.concat(
-          // createData(props.newRawRow[0], props.newRawRow[1], <Switch  defaultChecked />, <Switch  defaultChecked />)
           createData( 
-            // <Box sx={{ width: 50, m: 2}}>
-            //   {props.newRawRow[0]}
-            // </Box>,s
-            props.newRawRow[0],
-            // <Box sx={{ width: 50, m: 2}}>
-            //   {props.newRawRow[1]}
-            // </Box>,   
+            props.newRawRow[0], 
             props.newRawRow[1], 
             <Box sx={{ width: 200, m: 2}}>
               <Slider
@@ -100,24 +92,34 @@ function ClassList(props) {
           )
         )
       );
-      console.log("rows:\n", rows);
+      setCheckedCourses(checkedCourses.concat([props.newRawRow[0]]));
+      // checkedCourses.push(props.newRawRow[0])
+      props.setCheckedCourses(checkedCourses);
+      // console.log("checkedCourses when first added:", checkedCourses)
+      // console.log("rows:\n", rows);
     }, props.newRawRow);
 
-  var checkedCourses = [];
+  
 
   const handleCheck = (event) => {
     console.log(event.target.checked, event.target.name);
     if (event.target.checked) {
       if (!checkedCourses.includes(event.target.name)) {
-        checkedCourses.push(event.target.name);
+        setCheckedCourses(checkedCourses.concat([event.target.name]));
+        // checkedCourses.push(event.target.name);
       }
     } else {
       if (checkedCourses.includes(event.target.name)) {
-        checkedCourses = checkedCourses.filter(function(item) {
+        setCheckedCourses(checkedCourses.filter(function(item) {
           return item !== event.target.name;
-      })
+        }))
+      //   checkedCourses = checkedCourses.filter(function(item) {
+      //     return item !== event.target.name;
+      // })
       }
     }
+    // console.log("checkedCourses handleCheck:", checkedCourses);
+    props.setCheckedCourses(checkedCourses);
   }
 
 
