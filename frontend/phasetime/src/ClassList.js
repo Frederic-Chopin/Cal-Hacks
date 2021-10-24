@@ -17,6 +17,8 @@ import './App.css';
 
 
 function ClassList(props) {
+  var empty = true
+
   const ratings = [
     {
       value: 1,
@@ -47,6 +49,7 @@ function ClassList(props) {
       }
     })
     if (!exist) {
+      // empty = false;
       return {name: name, unit: unit, priority:priority, delete:toDelete};
     } else {
       return [];
@@ -76,9 +79,10 @@ function ClassList(props) {
             //   {props.newRawRow[0]}
             // </Box>,s
             props.newRawRow[0],
-            <Box sx={{ width: 50, m: 2}}>
-              {props.newRawRow[1]}
-            </Box>,    
+            // <Box sx={{ width: 50, m: 2}}>
+            //   {props.newRawRow[1]}
+            // </Box>,   
+            props.newRawRow[1], 
             <Box sx={{ width: 200, m: 2}}>
               <Slider
                 aria-label="Priority"
@@ -97,11 +101,28 @@ function ClassList(props) {
         )
       );
       console.log("rows:\n", rows);
-    }, [props.newRawRow, flipstate]);
+    }, props.newRawRow);
+
+  var checkedCourses = [];
+
+  const handleCheck = (event) => {
+    console.log(event.target.checked, event.target.name);
+    if (event.target.checked) {
+      if (!checkedCourses.includes(event.target.name)) {
+        checkedCourses.push(event.target.name);
+      }
+    } else {
+      if (checkedCourses.includes(event.target.name)) {
+        checkedCourses = checkedCourses.filter(function(item) {
+          return item !== event.target.name;
+      })
+      }
+    }
+  }
 
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} >
       <Table sx={{ minWidth: 300}} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -117,7 +138,9 @@ function ClassList(props) {
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             > 
-              <TableCell align="center"><Checkbox /></TableCell>
+              <TableCell align="center">
+                <Checkbox defaultChecked name={row.name} onChange={handleCheck}/>
+              </TableCell>
               <TableCell align="center" component="th" scope="row"> {row.name}</TableCell>
               <TableCell align="center">{row.unit}</TableCell>
               <TableCell align="center">{row.priority}</TableCell>
@@ -127,7 +150,8 @@ function ClassList(props) {
         </TableBody>
       </Table>
     </TableContainer>
-  );
+  )
+  
 }
 
 export default ClassList;

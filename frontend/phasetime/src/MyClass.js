@@ -12,14 +12,26 @@ function createData(name, phase) {
   return {name: name, phase: phase};
 }
 
-const rows = [
-  createData('cs61a', 'phase 1'),
-  createData('cs61b', 'phase 1'),
-  createData('cs61c', 'phase 1'),
-  createData('cs70', 'phase 2'),
-];
+// const rows = [
+//   createData('cs61a', 'phase 1'),
+//   createData('cs61b', 'phase 1'),
+//   createData('cs61c', 'phase 1'),
+//   createData('cs70', 'phase 2'),
+// ];
 
-function MyClass() {
+function MyClass(props) {
+
+  const [rows, setRows] = React.useState([]);
+  React.useEffect(
+    () => {
+      let newRows = [];
+      for (const courseName in props.phases) {
+        newRows.concat([{ name: courseName, phase: props.phases[courseName] }]);
+      }
+      setRows(newRows);
+    }, [props.phases]
+  );
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 300}} aria-label="simple table">
